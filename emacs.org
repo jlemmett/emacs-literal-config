@@ -47,6 +47,11 @@
      (load-theme 'leuven)
    #+END_SRC
 
+   #+name: look-and-feel
+   #+BEGIN_SRC emacs-lisp
+(nyan-mode +1)
+   #+END_SRC
+
 ** Font
 
    I like [[http://www.levien.com/type/myfonts/inconsolata.html][Inconsolata]], but it doesn't support a wide range of Unicode
@@ -504,7 +509,25 @@
 
    #+name: org-config
    #+BEGIN_SRC emacs-lisp
-     (setq org-mobile-directory "~/Dropbox/MobileOrg")
+     (setq org-directory "~/Dropbox/orgfiles/")
+     (setq org-mobile-files (list "~/Dropbox/orgfiles/gtd.org"))
+     (setq org-mobile-directory "~/Dropbox/orgfiles/mobile/")
+     (setq org-mobile-inbox-for-pull "~/Dropbox/orgfiles/from_mobile.org")
+   #+END_SRC
+** Habits
+  #+name: org-config
+  #+BEGIN_SRC emacs-lisp
+   (require 'org-habit)
+  #+END_SRC
+** Org agenda files
+   #+name: org-config
+   #+BEGIN_SRC emacs-lisp
+(setq org-agenda-files (list "~/Dropbox/orgfiles/gtd.org"
+                             "~/Dropbox/orgfiles/work.org"
+                             "~/Dropbox/orgfiles/home.org"
+                             "~/Dropbox/orgfiles/todo.org"
+                             "~/Dropbox/orgfiles/cloodle.org"
+                             "~/Dropbox/orgfiles/habits.org"))
    #+END_SRC
 ** Global keys
 
@@ -530,6 +553,19 @@
    #+name: org-config
    #+BEGIN_SRC emacs-lisp
         (setq org-agenda-span 14)
+   #+END_SRC
+
+   #+name: org-config
+   #+BEGIN_SRC emacs-lisp
+(setq org-capture-templates
+      '(("j" "Journal Entry" plain
+         (file+datetree "~/Dropbox/orgfiles/journal.org")
+         "%U\n\n%?" :empty-lines-before 1)
+        ("w" "Log Work Task" entry
+         (file+datetree "~/Dropbox/orgfiles/worklog.org")
+         "* TODO %^{Description}  %^g\n%?\n\nAdded: %U"
+         :clock-in t
+         :clock-keep t)))
    #+END_SRC
 
 ** Notes / Tasks / TODOs
