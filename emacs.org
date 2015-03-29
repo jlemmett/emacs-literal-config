@@ -735,6 +735,24 @@
      (add-to-list 'my/org-babel-evaluated-languages 'plantuml)
    #+END_SRC
 
+** GTD
+   #+name: org-config-gtd
+   #+BEGIN_SRC emacs-lisp
+     (setq org-remember-templates
+     '(
+      ("Todo" ?t "* TODO %^{Brief Description} %^g\n%?\nAdded: %U" "~/Dropbox/orgfiles/gtd.org" "Tasks")
+      ))
+   #+END_SRC
+
+   #+name: org-config-gtd
+   #+BEGIN_SRC emacs-lisp
+      (defun gtd ()
+         (interactive)
+         (find-file "~/Dropbox/orgfiles/gtd.org")
+     )
+     (global-set-key (kbd "C-c C-g") 'gtd)
+   #+END_SRC
+
 * Other libraries
   Loading ~dired+~ improves ~dired~.
   #+name: libraries
